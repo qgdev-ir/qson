@@ -2,8 +2,8 @@
  * Its not part of qson API its for internal use only
  */
 
-#ifndef _qson__deserialize_deserialize_h_
-#define _qson__deserialize_deserialize_h_
+#ifndef _qson_deserialize_internal_h_
+#define _qson_deserialize_internal_h_
 
 #include <stdlib.h>
 #include <stdio.h>
