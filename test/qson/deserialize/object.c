@@ -23,7 +23,7 @@ bool test_qson_get_object_entry() {
 	qson_deserialize_ctx_t ctx;
 	char key[10];
 	int key_size = 10;
-	qson_type value_type = QSON_TYPE_AUTO;
+	qson_type_t value_type = QSON_TYPE_AUTO;
 
 	bool success = 1;
 	success &= qson_create_deserialize_ctx(&ctx, buffer, array_len(buffer)) == QSON_RESULT_OK;
@@ -42,7 +42,7 @@ bool test_qson_get_object_entry_value_string() {
 	qson_deserialize_ctx_t ctx;
 	char key[4];
 	int key_size = 4;
-	qson_type value_type = QSON_TYPE_AUTO;
+	qson_type_t value_type = QSON_TYPE_AUTO;
 	char value[13];
 	int value_size = 13;
 	bool has_next;
@@ -68,7 +68,7 @@ bool test_qson_get_object_entry_value_bool() {
 	qson_deserialize_ctx_t ctx;
 	char key[4];
 	int key_size = 4;
-	qson_type value_type = QSON_TYPE_AUTO;
+	qson_type_t value_type = QSON_TYPE_AUTO;
 	bool value;
 	bool has_next;
 
@@ -104,7 +104,7 @@ bool test_qson_get_object_entry_value_null() {
 	qson_deserialize_ctx_t ctx;
 	char key[4];
 	int key_size = 4;
-	qson_type value_type = QSON_TYPE_AUTO;
+	qson_type_t value_type = QSON_TYPE_AUTO;
 	bool has_next;
 
 	bool success = 1;
@@ -126,7 +126,7 @@ bool test_qson_get_object_entry_value_number() {
 	qson_deserialize_ctx_t ctx;
 	char key[4];
 	int key_size = 4;
-	qson_type value_type = QSON_TYPE_AUTO;
+	qson_type_t value_type = QSON_TYPE_AUTO;
 	double value;
 	bool has_next;
 
@@ -150,7 +150,7 @@ bool test_qson_get_object_entry_value_sub_ctx() {
 	qson_deserialize_ctx_t ctx;
 	char key[4];
 	int key_size = 4;
-	qson_type value_type = QSON_TYPE_OBJECT;
+	qson_type_t value_type = QSON_TYPE_OBJECT;
 	bool has_next;
 	qson_deserialize_ctx_t sub_ctx;
 	char value[4];

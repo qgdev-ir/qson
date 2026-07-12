@@ -72,8 +72,8 @@ inline qson_result_t _qson_skip_white_spaces(struct qson_deserialize_ctx *ctx) {
  * If current given type is AUTO set detected type
  * otherwize check if given type is equal to detected type and if not return QSON_RESULT_INVALID_TYPE
  */
-inline qson_result_t _qson_detect_type(struct qson_deserialize_ctx *ctx, qson_type *type) {
-	qson_type dtype;
+inline qson_result_t _qson_detect_type(struct qson_deserialize_ctx *ctx, qson_type_t *type) {
+	qson_type_t dtype;
 	char chr = ctx->buffer[ctx->index];
 	switch (chr) {
 	case QSON_QUOTATION_MARK: dtype = QSON_TYPE_STRING; break;

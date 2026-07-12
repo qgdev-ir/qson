@@ -38,7 +38,7 @@ qson_result_t qson_start_array(qson_deserialize_ctx_t ctx) {
 	return QSON_RESULT_OK;
 }
 
-qson_result_t qson_get_array_entry(qson_deserialize_ctx_t ctx, qson_type *type) {
+qson_result_t qson_get_array_entry(qson_deserialize_ctx_t ctx, qson_type_t *type) {
 	struct qson_deserialize_ctx *c = ctx;
 	if (c->state != QSON_DESERIALIZING_STATE_ARRAY) return QSON_RESULT_INVALID_STATE;
 	qson_run(_qson_skip_white_spaces(c));
