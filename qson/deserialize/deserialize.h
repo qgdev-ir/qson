@@ -15,7 +15,7 @@ typedef enum {
 	QSON_DESERIALIZING_STATE_ARRAY = 3,		// deserializing an array
 	QSON_DESERIALIZING_STATE_ARRAY_VALUE = 4,	// deserializing memeber of an array
 	QSON_DESERIALIZING_STATE_SUBCTX = 5,		// a sub ctx is active for this ctx
-} qson_deserialize_state;
+} qson_deserialize_state_t;
 
 /*
  * Context for deserilizing a json
@@ -86,7 +86,7 @@ int qson_deserialize_ctx_index(qson_deserialize_ctx_t ctx);
 /*
  * Returns current state of ctx
  */
-qson_deserialize_state qson_deserialize_ctx_state(qson_deserialize_ctx_t ctx);
+qson_deserialize_state_t qson_deserialize_ctx_state(qson_deserialize_ctx_t ctx);
 
 #ifdef __cplusplus
 }
