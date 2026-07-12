@@ -17,7 +17,7 @@ struct qson_deserialize_ctx {
 	char *buffer;	// Buffer which contains the json
 	int size;	// Size of the buffer
 	int index;	// Current index in buffer
-	qson_deserialize_state state;	// Current state of deserialization
+	qson_deserialize_state_t state;	// Current state of deserialization
 	char flags;	// flags for current ctx
 };
 
