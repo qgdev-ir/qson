@@ -23,7 +23,7 @@ bool test_qson_get_array_entry() {
 	qson_deserialize_ctx_t ctx;
 	char key[6];
 	int key_size = 6;
-	qson_type value_type = QSON_TYPE_STRING;
+	qson_type_t value_type = QSON_TYPE_STRING;
 
 	bool success = 1;
 	success &= qson_create_deserialize_ctx(&ctx, buffer, array_len(buffer)) == QSON_RESULT_OK;
@@ -37,7 +37,7 @@ bool test_qson_get_array_entry_value_string() {
 	test_run_log("qson_get_array_entry_value_string");
 	char buffer[] = "[ \"string value\"  ]";
 	qson_deserialize_ctx_t ctx;
-	qson_type value_type = QSON_TYPE_STRING;
+	qson_type_t value_type = QSON_TYPE_STRING;
 	char value[13];
 	int value_size = 13;
 	bool has_next;
@@ -58,7 +58,7 @@ bool test_qson_get_array_entry_value_bool() {
 	test_run_log("qson_get_array_entry_value_bool");
 	char buffer[] = "[ true , false ]";
 	qson_deserialize_ctx_t ctx;
-	qson_type value_type = QSON_TYPE_BOOL;
+	qson_type_t value_type = QSON_TYPE_BOOL;
 	bool value;
 	bool has_next;
 
@@ -86,7 +86,7 @@ bool test_qson_get_array_entry_value_null() {
 	test_run_log("qson_get_array_entry_value_null");
 	char buffer[] = "[ null ]";
 	qson_deserialize_ctx_t ctx;
-	qson_type value_type = QSON_TYPE_NULL;
+	qson_type_t value_type = QSON_TYPE_NULL;
 	bool has_next;
 
 	bool success = 1;
@@ -103,7 +103,7 @@ bool test_qson_get_array_entry_value_number() {
 	test_run_log("qson_get_array_entry_value_number");
 	char buffer[] = "[  1E+2  ]";
 	qson_deserialize_ctx_t ctx;
-	qson_type value_type = QSON_TYPE_NUMBER;
+	qson_type_t value_type = QSON_TYPE_NUMBER;
 	double value;
 	bool has_next;
 
@@ -122,7 +122,7 @@ bool test_qson_get_array_entry_value_sub_ctx() {
 	test_run_log("qson_get_array_entry_value_sub_ctx");
 	char buffer[] = "[ [ \"]\\\"]\", [ true ] ] ]";
 	qson_deserialize_ctx_t ctx;
-	qson_type value_type = QSON_TYPE_ARRAY;
+	qson_type_t value_type = QSON_TYPE_ARRAY;
 	bool has_next;
 	qson_deserialize_ctx_t sub_ctx;
 	char value[4];

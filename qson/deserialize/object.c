@@ -39,7 +39,7 @@ qson_result_t qson_start_object(qson_deserialize_ctx_t ctx) {
 	return QSON_RESULT_OK;
 }
 
-qson_result_t qson_get_object_entry(qson_deserialize_ctx_t ctx, char *key, int *key_length, qson_type *type) {
+qson_result_t qson_get_object_entry(qson_deserialize_ctx_t ctx, char *key, int *key_length, qson_type_t *type) {
 	struct qson_deserialize_ctx *c = ctx;
 	if (c->state != QSON_DESERIALIZING_STATE_OBJECT) return QSON_RESULT_INVALID_STATE;
 

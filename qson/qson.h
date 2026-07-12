@@ -45,7 +45,7 @@ typedef enum {
 	QSON_TYPE_BOOL = 4,		// Type is a boolean
 	QSON_TYPE_OBJECT = 5,		// Type is an object
 	QSON_TYPE_ARRAY = 6,		// Type is an array
-} qson_type;
+} qson_type_t;
 
 #ifdef __cplusplus
 }

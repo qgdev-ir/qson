@@ -15,7 +15,7 @@ qson_result_t qson_start_object(qson_deserialize_ctx_t ctx);
  * Start deserializing a entry of an object and set context state to OBJECT_VALUE
  * Requires state OBJECT
  */
-qson_result_t qson_get_object_entry(qson_deserialize_ctx_t ctx, char *key, int *key_length, qson_type *type);
+qson_result_t qson_get_object_entry(qson_deserialize_ctx_t ctx, char *key, int *key_length, qson_type_t *type);
 
 /*
  * Read value of entry as a string
