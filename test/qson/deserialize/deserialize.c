@@ -9,6 +9,7 @@ bool test_qson_deserialize_skip_white_spaces() {
 	success &= qson_deserialize_ctx_create(&ctx, buffer, array_len(buffer)) == QSON_RESULT_OK;
 	success &= qson_deserialize_skip_white_spaces(ctx) == QSON_RESULT_OK;
 	success &= qson_deserialize_ctx_index(ctx) == 4;
+	success &= qson_deserialize_ctx_destroy(ctx) == QSON_RESULT_OK;
 	test_result_log(success);
 	return success;
 }
@@ -21,6 +22,7 @@ bool test_qson_deserialize_skip_white_spacesـunexpected_eof() {
 	bool success = 1;
 	success &= qson_deserialize_ctx_create(&ctx, buffer, array_len(buffer)) == QSON_RESULT_OK;
 	success &= qson_deserialize_skip_white_spaces(ctx) == QSON_RESULT_UNEXPECTED_EOF;
+	success &= qson_deserialize_ctx_destroy(ctx) == QSON_RESULT_OK;
 	test_result_log(success);
 	return success;
 }
@@ -39,6 +41,7 @@ bool test_qson_ctx_size_check() {
 	success &= qson_deserialize_ctx_create((void**) &ctx, buffer, 4) == QSON_RESULT_OK;
 	ctx->index = 3;
 	success &= _test_qson_ctx_size_check(ctx) == QSON_RESULT_UNEXPECTED_EOF;
+	success &= qson_deserialize_ctx_destroy(ctx) == QSON_RESULT_OK;
 	test_result_log(success);
 	return success;
 
@@ -53,6 +56,7 @@ bool test_qson_deserialize_skip_white_spacesـline_comment() {
 	success &= qson_deserialize_ctx_create(&ctx, buffer, array_len(buffer)) == QSON_RESULT_OK;
 	success &= qson_deserialize_skip_white_spaces(ctx) == QSON_RESULT_OK;
 	success &= qson_deserialize_ctx_index(ctx) == 18;
+	success &= qson_deserialize_ctx_destroy(ctx) == QSON_RESULT_OK;
 	test_result_log(success);
 	return success;
 }
@@ -66,6 +70,7 @@ bool test_qson_deserialize_skip_white_spacesـarea_comment() {
 	success &= qson_deserialize_ctx_create(&ctx, buffer, array_len(buffer)) == QSON_RESULT_OK;
 	success &= qson_deserialize_skip_white_spaces(ctx) == QSON_RESULT_OK;
 	success &= qson_deserialize_ctx_index(ctx) == 20;
+	success &= qson_deserialize_ctx_destroy(ctx) == QSON_RESULT_OK;
 	test_result_log(success);
 	return success;
 }
