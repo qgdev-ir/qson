@@ -13,6 +13,7 @@ bool test_qson_deserialize_array_start() {
 	success &= qson_deserialize_ctx_create(&ctx, buffer2, array_len(buffer)) == QSON_RESULT_OK;
 	success &= qson_deserialize_array_start(ctx) == QSON_RESULT_OK;
 	success &= qson_deserialize_ctx_state(ctx) == QSON_DESERIALIZING_STATE_NONE;
+	success &= qson_deserialize_ctx_destroy(ctx) == QSON_RESULT_OK;
 	test_result_log(success);
 	return success;
 }
@@ -29,6 +30,7 @@ bool test_qson_deserialize_array_entry() {
 	success &= qson_deserialize_ctx_create(&ctx, buffer, array_len(buffer)) == QSON_RESULT_OK;
 	success &= qson_deserialize_array_start(ctx) == QSON_RESULT_OK;
 	success &= qson_deserialize_array_entry(ctx, &value_type) == QSON_RESULT_OK;
+	success &= qson_deserialize_ctx_destroy(ctx) == QSON_RESULT_OK;
 	test_result_log(success);
 	return success;
 }
@@ -50,6 +52,7 @@ bool test_qson_deserialize_array_entry_value_string() {
 	success &= value_size == 13;
 	success &= strcmp(value, "string value") == 0;
 	success &= !has_next;
+	success &= qson_deserialize_ctx_destroy(ctx) == QSON_RESULT_OK;
 	test_result_log(success);
 	return success;
 }
@@ -78,6 +81,7 @@ bool test_qson_deserialize_array_entry_value_bool() {
 	success &= !value;
 	success &= !has_next;
 
+	success &= qson_deserialize_ctx_destroy(ctx) == QSON_RESULT_OK;
 	test_result_log(success);
 	return success;
 }
@@ -95,6 +99,7 @@ bool test_qson_deserialize_array_entry_value_null() {
 	success &= qson_deserialize_array_entry(ctx, &value_type) == QSON_RESULT_OK;
 	success &= qson_deserialize_array_entry_value_null(ctx, &has_next) == QSON_RESULT_OK;
 	success &= !has_next;
+	success &= qson_deserialize_ctx_destroy(ctx) == QSON_RESULT_OK;
 	test_result_log(success);
 	return success;
 }
@@ -114,6 +119,7 @@ bool test_qson_deserialize_array_entry_value_number() {
 	success &= qson_deserialize_array_entry_value_number(ctx, &value, &has_next) == QSON_RESULT_OK;
 	success &= value == 100;
 	success &= !has_next;
+	success &= qson_deserialize_ctx_destroy(ctx) == QSON_RESULT_OK;
 	test_result_log(success);
 	return success;
 }
@@ -158,6 +164,7 @@ bool test_qson_deserialize_array_entry_value_sub_ctx() {
 	success &= qson_deserialize_array_entry_value_sub_ctx_end(ctx, sub_ctx, &has_next) == QSON_RESULT_OK;
 	success &= !has_next;
 
+	success &= qson_deserialize_ctx_destroy(ctx) == QSON_RESULT_OK;
 	test_result_log(success);
 	return success;
 }

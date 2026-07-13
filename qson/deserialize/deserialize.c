@@ -11,6 +11,11 @@ qson_result_t qson_deserialize_ctx_create(qson_deserialize_ctx_t *ctx, char *buf
 	return QSON_RESULT_OK;
 }
 
+qson_result_t qson_deserialize_ctx_destroy(qson_deserialize_ctx_t ctx) {
+	free(ctx);
+	return QSON_RESULT_OK;
+}
+
 bool qson_is_white_space(char chr) {
 	for (int i = 0; i < array_len(QSON_WHITESPACES) - 1; i++) {
 		if (chr == QSON_WHITESPACES[i]) return true;
