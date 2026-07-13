@@ -19,7 +19,7 @@ inline static qson_result_t set_has_next(qson_deserialize_ctx_t ctx, bool *has_n
 	return QSON_RESULT_OK;
 }
 
-qson_result_t qson_start_object(qson_deserialize_ctx_t ctx) {
+qson_result_t qson_deserialize_object_start(qson_deserialize_ctx_t ctx) {
 	struct qson_deserialize_ctx *c = ctx;
 	if (c->state != QSON_DESERIALIZING_STATE_NONE) return QSON_RESULT_INVALID_STATE;
 
@@ -39,7 +39,7 @@ qson_result_t qson_start_object(qson_deserialize_ctx_t ctx) {
 	return QSON_RESULT_OK;
 }
 
-qson_result_t qson_get_object_entry(qson_deserialize_ctx_t ctx, char *key, int *key_length, qson_type_t *type) {
+qson_result_t qson_deserialize_object_entry(qson_deserialize_ctx_t ctx, char *key, int *key_length, qson_type_t *type) {
 	struct qson_deserialize_ctx *c = ctx;
 	if (c->state != QSON_DESERIALIZING_STATE_OBJECT) return QSON_RESULT_INVALID_STATE;
 
@@ -59,7 +59,7 @@ qson_result_t qson_get_object_entry(qson_deserialize_ctx_t ctx, char *key, int *
 	return QSON_RESULT_OK;
 }
 
-qson_result_t qson_get_object_entry_value_string(qson_deserialize_ctx_t ctx, char *value, int *value_length, bool *has_next) {
+qson_result_t qson_deserialize_object_entry_value_string(qson_deserialize_ctx_t ctx, char *value, int *value_length, bool *has_next) {
 	struct qson_deserialize_ctx *c = ctx;
 	if (c->state != QSON_DESERIALIZING_STATE_OBJECT_VALUE) return QSON_RESULT_INVALID_STATE;
 	if (c->buffer[c->index] != QSON_QUOTATION_MARK) return QSON_RESULT_INVALID_CHAR;
@@ -71,7 +71,7 @@ qson_result_t qson_get_object_entry_value_string(qson_deserialize_ctx_t ctx, cha
 	return QSON_RESULT_OK;
 }
 
-qson_result_t qson_get_object_entry_value_bool(qson_deserialize_ctx_t ctx, bool *value, bool *has_next) {
+qson_result_t qson_deserialize_object_entry_value_bool(qson_deserialize_ctx_t ctx, bool *value, bool *has_next) {
 	struct qson_deserialize_ctx *c = ctx;
 	if (c->state != QSON_DESERIALIZING_STATE_OBJECT_VALUE) return QSON_RESULT_INVALID_STATE;
 
@@ -82,7 +82,7 @@ qson_result_t qson_get_object_entry_value_bool(qson_deserialize_ctx_t ctx, bool 
 	return QSON_RESULT_OK;
 }
 
-qson_result_t qson_get_object_entry_value_null(qson_deserialize_ctx_t ctx, bool *has_next) {
+qson_result_t qson_deserialize_object_entry_value_null(qson_deserialize_ctx_t ctx, bool *has_next) {
 	struct qson_deserialize_ctx *c = ctx;
 	if (c->state != QSON_DESERIALIZING_STATE_OBJECT_VALUE) return QSON_RESULT_INVALID_STATE;
 	qson_run(qson_deserialize_null(ctx));
@@ -91,7 +91,7 @@ qson_result_t qson_get_object_entry_value_null(qson_deserialize_ctx_t ctx, bool 
 	return QSON_RESULT_OK;
 }
 
-qson_result_t qson_get_object_entry_value_number(qson_deserialize_ctx_t ctx, double *value, bool *has_next) {
+qson_result_t qson_deserialize_object_entry_value_number(qson_deserialize_ctx_t ctx, double *value, bool *has_next) {
 	struct qson_deserialize_ctx *c = ctx;
 	if (c->state != QSON_DESERIALIZING_STATE_OBJECT_VALUE) return QSON_RESULT_INVALID_STATE;
 	qson_run(qson_deserialize_number(ctx, value));
@@ -100,14 +100,14 @@ qson_result_t qson_get_object_entry_value_number(qson_deserialize_ctx_t ctx, dou
 	return QSON_RESULT_OK;
 }
 
-qson_result_t qson_get_object_entry_value_sub_ctx(qson_deserialize_ctx_t ctx, qson_deserialize_ctx_t sub_ctx) {
+qson_result_t qson_deserialize_object_entry_value_sub_ctx(qson_deserialize_ctx_t ctx, qson_deserialize_ctx_t sub_ctx) {
 	struct qson_deserialize_ctx *c = ctx;
 	if (c->state != QSON_DESERIALIZING_STATE_OBJECT_VALUE) return QSON_RESULT_INVALID_STATE;
 	qson_run(qson_deserialize_ctx_create_subctx(ctx, sub_ctx));
 	return QSON_RESULT_OK;
 }
 
-qson_result_t qson_get_object_entry_value_sub_ctx_end(qson_deserialize_ctx_t ctx, qson_deserialize_ctx_t sub_ctx, bool *has_next) {
+qson_result_t qson_deserialize_object_entry_value_sub_ctx_end(qson_deserialize_ctx_t ctx, qson_deserialize_ctx_t sub_ctx, bool *has_next) {
 	struct qson_deserialize_ctx *c = ctx;
 	if (c->state != QSON_DESERIALIZING_STATE_SUBCTX) return QSON_RESULT_INVALID_STATE;
 	qson_run(qson_end_sub_deserialize_ctx(ctx, sub_ctx));
