@@ -28,6 +28,11 @@ typedef void* qson_serialize_ctx_t;
 qson_result_t qson_serialize_ctx_create(qson_serialize_ctx_t *ctx, char *buffer, int size);
 
 /*
+ * Destroys the serialize context
+ */
+qson_result_t qson_serialize_ctx_destroy(qson_serialize_ctx_t ctx);
+
+/*
  * Finish buffer with a null terminator
  * Requires state NONE
  */
