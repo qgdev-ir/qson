@@ -93,7 +93,7 @@ qson_result_t qson_deserialize_array_entry_value_sub_ctx(qson_deserialize_ctx_t 
 qson_result_t qson_deserialize_array_entry_value_sub_ctx_end(qson_deserialize_ctx_t ctx, qson_deserialize_ctx_t sub_ctx, bool *has_next) {
 	struct qson_deserialize_ctx *c = ctx;
 	if (c->state != QSON_DESERIALIZING_STATE_SUBCTX) return QSON_RESULT_INVALID_STATE;
-	qson_run(qson_end_sub_deserialize_ctx(ctx, sub_ctx));
+	qson_run(qson_deserialize_ctx_end_subctx(ctx, sub_ctx));
 	qson_run(_qson_deserialize_skip_white_spaces(c));
 	qson_run(set_has_next(c, has_next));
 	return QSON_RESULT_OK;

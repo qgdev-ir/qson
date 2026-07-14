@@ -104,7 +104,7 @@ qson_result_t qson_deserialize_ctx_create_subctx(qson_deserialize_ctx_t ctx, qso
 	return QSON_RESULT_OK;
 }
 
-qson_result_t qson_end_sub_deserialize_ctx(qson_deserialize_ctx_t ctx, qson_deserialize_ctx_t sub_ctx) {
+qson_result_t qson_deserialize_ctx_end_subctx(qson_deserialize_ctx_t ctx, qson_deserialize_ctx_t sub_ctx) {
 	struct qson_deserialize_ctx *c = ctx;
 	struct qson_deserialize_ctx *sc = sub_ctx;
 	if (c->state != QSON_DESERIALIZING_STATE_SUBCTX) return QSON_RESULT_INVALID_STATE;
