@@ -11,6 +11,7 @@ bool _test_qson_serialize_object() {
 	success &= qson_serialize_object_end(ctx) == QSON_RESULT_OK;
 	success &= qson_serialize_ctx_end(ctx) == QSON_RESULT_OK;
 	success &= strcmp(buffer, "{}\0") == 0;
+	success &= qson_serialize_ctx_destroy(ctx) == QSON_RESULT_OK;
 	test_result_log(success);
 	return success;
 }
@@ -29,6 +30,7 @@ bool test_qson_serialize_object_entry_string() {
 	success &= qson_serialize_object_entry_string(ctx, key, value, false) == QSON_RESULT_OK;
 	success &= qson_serialize_ctx_end(ctx) == QSON_RESULT_OK;
 	success &= strcmp("{\"key\":\"value\",\"key\":\"value\"}", buffer) == 0;
+	success &= qson_serialize_ctx_destroy(ctx) == QSON_RESULT_OK;
 	test_result_log(success);
 	return success;
 }
@@ -45,6 +47,7 @@ bool test_qson_serialize_object_entry_null() {
 	success &= qson_serialize_object_entry_null(ctx, key, false) == QSON_RESULT_OK;
 	success &= qson_serialize_ctx_end(ctx) == QSON_RESULT_OK;
 	success &= strcmp("{\"key\":null}", buffer) == 0;
+	success &= qson_serialize_ctx_destroy(ctx) == QSON_RESULT_OK;
 	test_result_log(success);
 	return success;
 }
@@ -62,6 +65,7 @@ bool test_qson_serialize_object_entry_bool() {
 	success &= qson_serialize_object_entry_bool(ctx, key, false, false) == QSON_RESULT_OK;
 	success &= qson_serialize_ctx_end(ctx) == QSON_RESULT_OK;
 	success &= strcmp("{\"key\":true,\"key\":false}", buffer) == 0;
+	success &= qson_serialize_ctx_destroy(ctx) == QSON_RESULT_OK;
 	test_result_log(success);
 	return success;
 }
@@ -78,6 +82,7 @@ bool test_qson_serialize_object_entry_number() {
 	success &= qson_serialize_object_entry_number(ctx, key, -1.23, false) == QSON_RESULT_OK;
 	success &= qson_serialize_ctx_end(ctx) == QSON_RESULT_OK;
 	success &= strcmp("{\"key\":-1.230000}", buffer) == 0;
+	success &= qson_serialize_ctx_destroy(ctx) == QSON_RESULT_OK;
 	test_result_log(success);
 	return success;
 }
@@ -101,6 +106,7 @@ bool test_qson_serialize_object_entry_subctx() {
 
 	success &= qson_serialize_ctx_end(ctx) == QSON_RESULT_OK;
 	success &= strcmp(buffer, "{\"key\":{\"key\":true}}") == 0;
+	success &= qson_serialize_ctx_destroy(ctx) == QSON_RESULT_OK;
 	test_result_log(success);
 	return success;
 }
