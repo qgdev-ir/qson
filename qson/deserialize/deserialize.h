@@ -82,7 +82,7 @@ qson_result_t qson_deserialize_ctx_create_subctx(qson_deserialize_ctx_t ctx, qso
  * Add subctx index to ctx (changing state is caller responsibility)
  * Requires state SUBCTX and state NONE in subctx
  */
-qson_result_t qson_end_sub_deserialize_ctx(qson_deserialize_ctx_t ctx, qson_deserialize_ctx_t sub_ctx);
+qson_result_t qson_deserialize_ctx_end_subctx(qson_deserialize_ctx_t ctx, qson_deserialize_ctx_t sub_ctx);
 
 /*
  * Returns current index of ctx
