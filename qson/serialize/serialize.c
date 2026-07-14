@@ -11,6 +11,11 @@ qson_result_t qson_serialize_ctx_create(qson_serialize_ctx_t *ctx, char *buffer,
 	return QSON_RESULT_OK;
 }
 
+qson_result_t qson_serialize_ctx_destroy(qson_serialize_ctx_t ctx) {
+	free(ctx);
+	return QSON_RESULT_OK;
+}
+
 qson_result_t qson_serialize_ctx_end(qson_serialize_ctx_t ctx) {
 	struct qson_serialize_ctx *c = ctx;
 	if (c->state != QSON_SERIALIZE_STATE_NONE) return QSON_RESULT_INVALID_STATE;
