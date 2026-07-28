@@ -171,7 +171,7 @@ bool test_qson_deserialize_array_entry_value_sub_ctx() {
 
 bool test_qson_deserialize_array_entry_value_skip() {
 	test_run_log("qson_deserialize_array_entry_value_skip");
-	char buffer[] = "[ false , \"sik\" , 2 , null ]";
+	char buffer[] = "[ false , \"sik\" , 2 , null, [ 85 ], [] ]w";
 	qson_deserialize_ctx_t ctx;
 
 	bool success = 1;
