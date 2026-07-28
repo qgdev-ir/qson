@@ -57,8 +57,8 @@ qson_result_t qson_deserialize_bool_skip(qson_deserialize_ctx_t ctx) {
 	char *pos = &c->buffer[c->index];
 	if (qson_ctx_size_has(c, sizeof(QSON_BOOL_TRUE) - 1) && memcmp(pos, QSON_BOOL_TRUE, sizeof(QSON_BOOL_TRUE) - 1) == 0) {
 		qson_ctx_skip(c, sizeof(QSON_BOOL_TRUE) - 1);
-	} else if (qson_ctx_size_has(c, sizeof(QSON_BOOL_FALSE)) && memcmp(pos, QSON_BOOL_FALSE, sizeof(QSON_BOOL_FALSE) - 1) == 0) {
-		qson_ctx_skip(c, sizeof(QSON_BOOL_FALSE));
+	} else if (qson_ctx_size_has(c, sizeof(QSON_BOOL_FALSE) - 1) && memcmp(pos, QSON_BOOL_FALSE, sizeof(QSON_BOOL_FALSE) - 1) == 0) {
+		qson_ctx_skip(c, sizeof(QSON_BOOL_FALSE) - 1);
 	} else {
 		return QSON_RESULT_INVALID_CHAR;
 	}
