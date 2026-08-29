@@ -30,3 +30,7 @@ qson_result_t qson_mallocator_destroy(qson_mallocator_t m) {
 	return QSON_RESULT_OK;
 }
 
+qson_mallocator_t qson_mallocator_default() {
+	return &_qson_mallocator_default;
+}
+
