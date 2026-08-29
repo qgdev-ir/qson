@@ -19,6 +19,11 @@ typedef struct qson_mallocator *qson_mallocator_t;
  */
 qson_result_t qson_mallocator_create(qson_mallocator_t *mallocator, void* (*malloc)(size_t size), void* (*realloc)(void *buf, size_t size), void (*free)(void *buf));
 
+/*
+ * Destroys memory allocator
+ */
+qson_result_t qson_mallocator_destroy(qson_mallocator_t m);
+
 #ifdef __cplusplus
 }
 #endif

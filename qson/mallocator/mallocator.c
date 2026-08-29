@@ -9,3 +9,8 @@ qson_result_t qson_mallocator_create(qson_mallocator_t *mallocator, void* (*mall
 	return QSON_RESULT_OK;
 }
 
+qson_result_t qson_mallocator_destroy(qson_mallocator_t m) {
+	m->free(m);
+	return QSON_RESULT_OK;
+}
+
