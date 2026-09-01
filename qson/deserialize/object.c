@@ -68,6 +68,17 @@ qson_result_t qson_deserialize_object_entry(qson_deserialize_ctx_t c, char *key,
 	return QSON_RESULT_OK;
 }
 
+qson_result_t qson_deserialize_object_entry_auto(qson_deserialize_ctx_t c, char **key, size_t *key_length, qson_type_t *type) {
+	_qson_deserialize_object_entry_prekey(c);
+	if (key != NULL && key_length != NULL) {
+		qson_run(qson_deserialize_string_auto(c, key, key_length));
+	} else {
+		qson_run(qson_deserialize_string_skip(c));
+	}
+	_qson_deserialize_object_entry_postkey(c, type);
+	return QSON_RESULT_OK;
+}
+
 qson_result_t qson_deserialize_object_entry_value_skip(qson_deserialize_ctx_t c, bool *has_next) {
 	if (c->state != QSON_DESERIALIZING_STATE_OBJECT_VALUE) return QSON_RESULT_INVALID_STATE;
 	qson_run(_qson_deserialize_skip_white_spaces(c));
