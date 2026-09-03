@@ -14,6 +14,18 @@ qson_result_t qson_deserialize_ctx_create(qson_deserialize_ctx_t *ctx, char *buf
 	return QSON_RESULT_OK;
 }
 
+qson_result_t qson_deserialize_ctx_create_mallocator(qson_deserialize_ctx_t *ctx, char *buffer, int size, qson_mallocator_t m) {
+	qson_deserialize_ctx_t c = m->malloc(sizeof(struct qson_deserialize_ctx));
+	c->buffer = buffer;
+	c->size = size;
+	c->index = 0;
+	c->state = QSON_DESERIALIZING_STATE_NONE;
+	c->flags = 0;
+	c->mallocator = m;
+	*ctx = c;
+	return QSON_RESULT_OK;
+}
+
 qson_result_t qson_deserialize_ctx_destroy(qson_deserialize_ctx_t ctx) {
 	qfree(ctx, ctx);
 	return QSON_RESULT_OK;
